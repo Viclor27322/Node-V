@@ -4,7 +4,7 @@
   "description": "Deploy de Node app a Vercel",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "nodemon index.js"
   },
   "repository": {
     "type": "git",
