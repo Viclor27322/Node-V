@@ -1,0 +1,28 @@
+{
+  "name": "node-v",
+  "version": "1.0.0",
+  "description": "Deploy de Node app a Vercel",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Viclor27322/Node-V.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Viclor27322/Node-V/issues"
+  },
+  "homepage": "https://github.com/Viclor27322/Node-V#readme",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongoose": "^7.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.21"
+  }
+}
