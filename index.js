@@ -2,6 +2,9 @@ const express = require('express');
 const mongoose= require('mongoose');
 require('dotenv').config();
 const productoRoutes = require('./src/routes/producto');
+const productosRoutes = require('./src/routes/productos');
+const TerrRoutes = require('./src/routes/terrario');
+const UserRoutes = require('./src/routes/users');
 
 
 const app = express();
@@ -14,7 +17,10 @@ app.get('/',(req,res)=>{
 
 //midelware
 app.use(express.json());
-app.use('/api',productoRoutes)
+app.use('/api',productoRoutes);
+app.use('/api',productosRoutes);
+app.use('/api',TerrRoutes);
+app.use('/api',UserRoutes);
 
 
 ///conexion
