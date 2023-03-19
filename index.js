@@ -17,10 +17,10 @@ app.get('/',(req,res)=>{
 
 //midelware
 app.use(express.json());
-app.use('/api',productoRoutes);
-app.use('/api',productosRoutes);
-app.use('/api',TerrRoutes);
-app.use('/api',UserRoutes);
+app.use('',productoRoutes);
+app.use('',productosRoutes);
+app.use('',TerrRoutes);
+app.use('',UserRoutes);
 
 
 ///conexion
