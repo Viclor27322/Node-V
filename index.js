@@ -21,7 +21,9 @@ app.use('',productoRoutes);
 app.use('',productosRoutes);
 app.use('',TerrRoutes);
 app.use('',UserRoutes);
-app.use(cors({ "Access-Control-Allow-Origin" : "*" }));
+app.use(cors({
+    origin: '*'
+  }));
 
 
 ///conexion
