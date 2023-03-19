@@ -12,7 +12,7 @@ const port = process.env.PORT || 9000;
 
 //routes
 app.get('/',(req,res)=>{
-    res.send("Welcome to my A")
+    res.send("Welcome to my Api")
 })
 
 //midelware
