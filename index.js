@@ -5,7 +5,7 @@ const productoRoutes = require('./src/routes/producto');
 const productosRoutes = require('./src/routes/productos');
 const TerrRoutes = require('./src/routes/terrario');
 const UserRoutes = require('./src/routes/users');
-
+const cors = require('cors');
 
 const app = express();
 const port = process.env.PORT || 9000;
@@ -21,6 +21,7 @@ app.use('',productoRoutes);
 app.use('',productosRoutes);
 app.use('',TerrRoutes);
 app.use('',UserRoutes);
+app.use(cors({ "Access-Control-Allow-Origin" : "*" }));
 
 
 ///conexion
