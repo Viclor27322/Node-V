@@ -28,10 +28,10 @@ app.use(cors({
     next();
   });
   
-app.use('',productoRoutes);
-app.use('',productosRoutes);
-app.use('',TerrRoutes);
-app.use('',UserRoutes);
+app.use('/api',productoRoutes);
+app.use('/api',productosRoutes);
+app.use('/api',TerrRoutes);
+app.use('/api',UserRoutes);
 
   
   
