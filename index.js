@@ -17,10 +17,6 @@ app.get('/',(req,res)=>{
 
 //midelware
 app.use(express.json());
-app.use('',productoRoutes);
-app.use('',productosRoutes);
-app.use('',TerrRoutes);
-app.use('',UserRoutes);
 app.use(cors());
 app.use(cors({
     origin: '*'
@@ -32,6 +28,11 @@ app.use(cors({
     next();
   });
   
+app.use('',productoRoutes);
+app.use('',productosRoutes);
+app.use('',TerrRoutes);
+app.use('',UserRoutes);
+
   
   
   
