@@ -21,6 +21,7 @@ app.use('',productoRoutes);
 app.use('',productosRoutes);
 app.use('',TerrRoutes);
 app.use('',UserRoutes);
+app.use(cors());
 app.use(cors({
     origin: '*'
   }));
