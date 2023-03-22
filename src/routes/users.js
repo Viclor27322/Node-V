@@ -10,7 +10,15 @@ router.post('/users',(req,res)=>{
     .then((data)=>res.json(data))
     .catch((error)=>res.json({message:error}));
 });
-
+//login
+router.post('/users/',(req,res)=>{
+    const users= UsersSchema(req.params.nombreUsers);
+    const correo= UsersSchema(req.params.correo);
+    const contra= UsersSchema(req.params.electronico);
+    UsersSchema.find({nombreUsers:users,contraseña:contra,correo:correo})
+    .then((data)=>res.json("Usuario encontrado"))
+    .catch((error)=>res.json("Usuario no encontrado"));
+});
 //consultar
 router.get('/users',(req,res)=>{
     UsersSchema
