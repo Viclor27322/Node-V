@@ -18,6 +18,10 @@ const UsersSchema = new Schema({
         type:String,
         require:true
     },
+    pregunta:{
+        type:String,
+        require:trure
+    },
     clave:{
         type:String,
         require:true
