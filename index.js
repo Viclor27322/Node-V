@@ -24,10 +24,6 @@ app.use((req, res, next) => {
     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     next();
   });
-app.use('/api',productoRoutes);
-app.use('/api',productosRoutes);
-app.use('/api',TerrRoutes);
-app.use('/api',UserRoutes);
 
   
   
