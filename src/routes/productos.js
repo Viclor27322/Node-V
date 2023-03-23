@@ -31,9 +31,9 @@ router.get('/productos/:id',(req,res)=>{
 ///actualizar
 router.put('/productos/:id',(req,res)=>{
     const {id} = req.params;
-    const {nombre,descripcion,precio,sabor,presentacion,existencia} = req.body;
+    const {nombre,descripcion,imagen,precio,sabor,presentacion,existencia} = req.body;
     ProdSchema
-    .updateOne({_id:id},{$set:{nombre,descripcion,precio,sabor,presentacion,existencia}})
+    .updateOne({_id:id},{$set:{nombre,descripcion,imagen,precio,sabor,presentacion,existencia}})
     .then((data)=>res.json(data))
     .catch((error)=>res.json({message:error}));
 });
