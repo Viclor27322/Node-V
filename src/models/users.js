@@ -20,7 +20,7 @@ const UsersSchema = new Schema({
     },
     pregunta:{
         type:String,
-        require:trure
+        require:true
     },
     clave:{
         type:String,
