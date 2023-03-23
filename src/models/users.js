@@ -17,6 +17,10 @@ const UsersSchema = new Schema({
     correo:{
         type:String,
         require:true
+    },
+    clave:{
+        type:String,
+        require:true
     }
 });
 
