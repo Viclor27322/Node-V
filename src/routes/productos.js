@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const ProdSchema= require('../models/productos');
-const upload = require('../storage/storage');
+const uploadImage = require('../cloudinary/cloudinary');
+
 
 //crear
-router.post('/productos',upload.single('image'),(req,res)=>{
+router.post('/productos', async (req,res)=>{
     const {
         nombre,
         descripcion,
@@ -14,7 +15,7 @@ router.post('/productos',upload.single('image'),(req,res)=>{
         existencia
     }= req.body;
     
-    const producto = ProdSchema({
+    const producto = new ProdSchema({
         nombre,
         descripcion,
         precio,
@@ -22,9 +23,12 @@ router.post('/productos',upload.single('image'),(req,res)=>{
         presentacion,
         existencia
     })
-    if(req.file){
-        const {filename} = req.file;
-        ProdSchema.setImage(filename);
+    if(req.files?.imagen){
+        const rs= await uploadImage(req.files.imagen.tempFilePath)
+        producto.imagen={
+            public_id:rs.public_id,
+            secure_url:rs.secure_url
+        }
     }
     producto.save()
     .then((data)=>res.json(data))
