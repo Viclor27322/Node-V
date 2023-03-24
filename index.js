@@ -17,8 +17,7 @@ app.get('/',(req,res)=>{
 })
 
 //midelware
-app.use(bodyParser.urlencoded({extended:false}));
-app.use(bodyParser.json());
+
 app.use(cors());
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
@@ -26,6 +25,7 @@ app.use((req, res, next) => {
     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     next();
   });
+app.use(express.json());
 app.use('/public',express.static(`${__dirname}/src/img`))
 app.use('/api',productoRoutes);
 app.use('/api',productosRoutes);
