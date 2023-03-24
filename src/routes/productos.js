@@ -1,12 +1,32 @@
 const express = require('express');
 const router = express.Router();
 const ProdSchema= require('../models/productos');
+const upload = require('../storage/storage');
 
 //crear
-router.post('/productos',(req,res)=>{
-    const producto= ProdSchema(req.body);
-    producto
-    .save()
+router.post('/productos',upload.single('image'),(req,res)=>{
+    const {
+        nombre,
+        descripcion,
+        precio,
+        sabor,
+        presentacion,
+        existencia
+    }= req.body;
+    
+    const producto = ProdSchema({
+        nombre,
+        descripcion,
+        precio,
+        sabor,
+        presentacion,
+        existencia
+    })
+    if(req.file){
+        const {filename} = req.file;
+        ProdSchema.setImage(filename);
+    }
+    producto.save()
     .then((data)=>res.json(data))
     .catch((error)=>res.json({message:error}));
 });
