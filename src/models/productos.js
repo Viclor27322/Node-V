@@ -31,9 +31,5 @@ const ProdSchema = new Schema({
         require:true
     }
 });
-ProdSchema.methods.setImagen= function setImagen(filename){
-    const puerto = process.env.APP_HOST
-    this.imagen=`${puerto}/public/${filename}`
-}
 
 module.exports = mongoose.model('Productos',ProdSchema);
