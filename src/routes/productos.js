@@ -16,7 +16,7 @@ router.post('/productos', async (req, res) => {
         existencia,
       } = req.body;
   
-      const producto = ProdSchema({
+      const producto = new ProdSchema({
         nombre,
         descripcion,
         precio,
