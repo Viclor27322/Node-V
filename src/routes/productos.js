@@ -2,21 +2,10 @@ const express = require('express');
 const router = express.Router();
 const ProdSchema= require('../models/productos');
 const uploadImage = require('../cloudinary/cloudinary');
-const multer = require('multer');
-const fs = require('fs');
-const path = require('path');
 
-const uploadPath = path.join(__dirname, 'uploads');
 
-// crea la carpeta 'uploads' si no existe
-if (!fs.existsSync(uploadPath)) {
-  fs.mkdirSync(uploadPath);
-}
-
-// configura Multer para que escriba los archivos en la carpeta 'uploads'
-const upload = multer({ dest: uploadPath });
 //crear
-router.post('/productos', upload.single('imagen'), async (req, res) => {
+router.post('/productos', async (req, res) => {
     try {
       const {
         nombre,
@@ -34,12 +23,8 @@ router.post('/productos', upload.single('imagen'), async (req, res) => {
         sabor,
         presentacion,
         existencia,
-        imagen: {
-            public_id: '',
-            secure_url: ''
-          }
-        });
-  /* 
+      });
+  
       if (req.files?.imagen) {
         const rs = await uploadImage(req.files.imagen.tempFilePath);
         producto.imagen = {
@@ -47,13 +32,6 @@ router.post('/productos', upload.single('imagen'), async (req, res) => {
           secure_url: rs.secure_url,
         };
         fs.unlink(req.files.imagen.tempFilePath);
-      } */
-      if (req.file) {
-        const result = await uploadImage(req.file.path);
-        producto.imagen = {
-          public_id: result.public_id,
-          secure_url: result.secure_url
-        };
       }
   
       await producto.save();
