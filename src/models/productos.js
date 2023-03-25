@@ -11,8 +11,8 @@ const ProdSchema = new Schema({
     require: true,
   },
   imagen: {
-    public_id: String,
-    secure_url: String,
+    type: String,
+    required: true
   },
   precio: {
     type: Number,
