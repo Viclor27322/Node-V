@@ -4,7 +4,7 @@ const ProdSchema= require('../models/productos');
 const uploadImage = require('../cloudinary/cloudinary');
 const multer = require('multer');
 
-const upload = multer({ dest: '../img/' });
+const upload = multer({ dest: 'uploads/' });
 //crear
 router.post('/productos', upload.single('imagen'), async (req, res) => {
     try {
