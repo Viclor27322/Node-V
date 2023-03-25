@@ -6,7 +6,6 @@ cloudinary.config({
   cloud_name: "dleyjie7k",
   api_key: "369378637416463",
   api_secret: "SpzO0eWcQSDLriCXAARVfNTJdLQ"
-
 });
 
 export async function uploadImage(filePath){

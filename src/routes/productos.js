@@ -29,7 +29,7 @@ router.post('/productos', async (req,res)=>{
             public_id:rs.public_id,
             secure_url:rs.secure_url
         }
-        await fs.unlink(req.files.imagen.tempFilePath);
+        fs.unlink(req.files.imagen.tempFilePath);
     }
     producto.save()
     .then((data)=>res.json(data))
