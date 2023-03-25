@@ -3,8 +3,18 @@ const router = express.Router();
 const ProdSchema= require('../models/productos');
 const uploadImage = require('../cloudinary/cloudinary');
 const multer = require('multer');
+const fs = require('fs');
+const path = require('path');
 
-const upload = multer({ dest: 'uploads/' });
+const uploadPath = path.join(__dirname, 'uploads');
+
+// crea la carpeta 'uploads' si no existe
+if (!fs.existsSync(uploadPath)) {
+  fs.mkdirSync(uploadPath);
+}
+
+// configura Multer para que escriba los archivos en la carpeta 'uploads'
+const upload = multer({ dest: uploadPath });
 //crear
 router.post('/productos', upload.single('imagen'), async (req, res) => {
     try {
