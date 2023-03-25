@@ -25,6 +25,11 @@ const UsersSchema = new Schema({
     clave:{
         type:String,
         require:true
+    },
+    rol:{
+        type: Schema.Types.ObjectId,
+        ref:"rol",// verificar que esten bien
+        require:true
     }
 });
 

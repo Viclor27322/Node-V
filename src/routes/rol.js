@@ -1,47 +1,47 @@
 const express = require('express');
 const router = express.Router();
-const UsersSchema = require('../models/users');
+const RolSchema = require('../models/rol');
 
 //crear
-router.post('/users',(req,res)=>{
-    const users= UsersSchema(req.body);
-    users
+router.post('/rol',(req,res)=>{
+    const rol= RolSchema(req.body);
+    rol
     .save()
     .then((data)=>res.json(data))
     .catch((error)=>res.json({message:error}));
 });
 
 //consultar
-router.get('/users',(req,res)=>{
-    UsersSchema
+router.get('/rol',(req,res)=>{
+    RolSchema
     .find()
     .then((data)=>res.json(data))
     .catch((error)=>res.json({message:error}));
 });
 
 //consulta id
-router.get('/users/:id',(req,res)=>{/// aun no se como hacerle xd
+router.get('/rol/:id',(req,res)=>{/// aun no se como hacerle xd
     const {id} = req.params;
-    UsersSchema
+    RolSchema
     .findById(id)
     .then((data)=>res.json(data))
     .catch((error)=>res.json({message:error}));
 });
 
 ///actualizar
-router.put('/users/:id',(req,res)=>{
+router.put('/rol/:id',(req,res)=>{
     const {id} = req.params;
-    const {nombre,nombreUsers,contraseña,correo,pregunta,clave,rol} = req.body;
-    UsersSchema
-    .updateOne({_id:id},{$set:{nombre,nombreUsers,contraseña,correo,pregunta,clave,rol}})
+    const {rol,descripcion} = req.body;
+    RolSchema
+    .updateOne({_id:id},{$set:{rol,descripcion}})
     .then((data)=>res.json(data))
     .catch((error)=>res.json({message:error}));
 });
 
 //eliminar 
-router.delete('/users/:id',(req,res)=>{
+router.delete('/rol/:id',(req,res)=>{
     const {id} = req.params;
-    UsersSchema.deleteOne({_id:id})
+    RolSchema.deleteOne({_id:id})
     .then((data)=>res.json(data))
     .catch((error)=>res.json({message:error}));
 });

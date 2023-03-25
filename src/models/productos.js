@@ -25,14 +25,15 @@ const ProdSchema = new Schema({
   presentacion: {
     type: String,
     require: true,
-  },
+  },///podria cambiar presentacion por categoria
   existencia: {
     type: Number,
     require: true,
   },
   categoria: {
-    type: String,
-    require: true,
+    type: Schema.Types.ObjectId,
+    ref:"categoria",///verificar como se llamara
+    require: true
   },
 });
 

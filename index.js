@@ -1,10 +1,13 @@
 const express = require('express');
 const mongoose= require('mongoose');
 require('dotenv').config();
-const productoRoutes = require('./src/routes/producto');
 const productosRoutes = require('./src/routes/productos');
 const TerrRoutes = require('./src/routes/terrario');
 const UserRoutes = require('./src/routes/users');
+const AyudaRoutes = require('./src/routes/ayuda');
+const CateRoutes = require('./src/routes/categoria');
+const RolRoutes = require('./src/routes/rol');
+const VentaRoutes = require('./src/routes/venta');
 const cors = require('cors');
 
 const app = express();
@@ -25,10 +28,13 @@ app.use((req, res, next) => {
     next();
   });
 app.use(express.json());
-app.use('/api',productoRoutes);
 app.use('/api',productosRoutes);
 app.use('/api',TerrRoutes);
 app.use('/api',UserRoutes);
+app.use('/api',AyudaRoutes);
+app.use('/api',CateRoutes);
+app.use('/api',RolRoutes);
+app.use('/api',VentaRoutes);
 
   
   
