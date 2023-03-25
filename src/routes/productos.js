@@ -5,36 +5,42 @@ const uploadImage = require('../cloudinary/cloudinary');
 
 
 //crear
-router.post('/productos', async (req,res)=>{
-    const {
+router.post('/productos', async (req, res) => {
+    try {
+      const {
         nombre,
         descripcion,
         precio,
         sabor,
         presentacion,
-        existencia
-    }= req.body;
-    
-    const producto = new ProdSchema({
+        existencia,
+      } = req.body;
+  
+      const producto = ProdSchema({
         nombre,
         descripcion,
         precio,
         sabor,
         presentacion,
-        existencia
-    })
-    if(req.files?.imagen){
-        const rs= await uploadImage(req.files.imagen.tempFilePath)
-        producto.imagen={
-            public_id:rs.public_id,
-            secure_url:rs.secure_url
-        }
+        existencia,
+      });
+  
+      if (req.files?.imagen) {
+        const rs = await uploadImage(req.files.imagen.tempFilePath);
+        producto.imagen = {
+          public_id: rs.public_id,
+          secure_url: rs.secure_url,
+        };
         fs.unlink(req.files.imagen.tempFilePath);
+      }
+  
+      await producto.save();
+      res.json(producto);
+    } catch (error) {
+      console.log('Error al crear el producto', error);
+      res.status(400).json({ message: error.message });
     }
-    producto.save()
-    .then((data)=>res.json(data))
-    .catch((error)=>res.json({message:error}));
-});
+  });
 
 //consultar
 router.get('/productos',(req,res)=>{

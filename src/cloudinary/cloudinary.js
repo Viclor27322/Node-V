@@ -8,10 +8,14 @@ cloudinary.config({
   api_secret: "SpzO0eWcQSDLriCXAARVfNTJdLQ"
 });
 
-export async function uploadImage(filePath){
-    return await cloudinary.uploader.upload(filePath,{
-        folder:'proyecto'
-    })
+export async function uploadImage(filePath) {
+  try {
+    const result = await cloudinary.uploader.upload(filePath, { folder: 'proyecto' });
+    return result;
+  } catch (err) {
+    console.log('Error al cargar la imagen en Cloudinary', err);
+    return null;
+  }
 }
 
 export async function deleteImage(publicId){
