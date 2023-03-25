@@ -23,6 +23,7 @@ router.post('/productos', upload.single('imagen'), async (req, res) => {
         precio,
         sabor,
         presentacion,
+        existencia,
         imagen: {
             public_id: '',
             secure_url: ''
