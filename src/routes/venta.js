@@ -4,7 +4,7 @@ const VentaSchema = require('../models/venta');
 
 //crear
 router.post('/venta'),(req,res)=>{
-    const {usuario,productos,existencia,total}=req.body;
+    const {usuario,productos,cantidad,total}=req.body;
     let fechaActualD = new Date();
     let dia = fechaActualD.getDate().toString().padStart(2, "0"); // Agrega un cero a la izquierda si el día tiene un solo dígito
     let mes = (fechaActualD.getMonth() + 1).toString().padStart(2, "0"); // Agrega un cero a la izquierda si el mes tiene un solo dígito
@@ -16,6 +16,7 @@ router.post('/venta'),(req,res)=>{
     let hora = fechaActual.getHours().toString().padStart(2, "0"); // Agrega un cero a la izquierda si la hora tiene un solo dígito
     let minutos = fechaActual.getMinutes().toString().padStart(2, "0"); // Agrega un cero a la izquierda si los minutos tienen un solo dígito   
 
+    
     let horaFormateada = hora + ":" + minutos;
     const venta = new VentaSchema({
         fecha : fechaFormateada,
@@ -23,7 +24,7 @@ router.post('/venta'),(req,res)=>{
         usuario, 
         productos:[ 
             productos,
-            existencia,
+            cantidad,
             total
         ]
       })
