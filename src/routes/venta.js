@@ -23,10 +23,11 @@ router.post('/venta'),(req,res)=>{
         fecha : fechaFormateada,
         hora : horaFormateada,
         usuario, 
-        productos:[ 
-            productos,
-            cantidad,
-            total
+        productos:[ {
+            producto:productos,
+            cantidad:cantidad,
+            total:total
+        }  
         ]
       })
     venta
