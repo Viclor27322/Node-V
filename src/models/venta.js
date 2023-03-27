@@ -16,9 +16,9 @@ const VentaSchema= new Schema({
         require:true
     },
     productos:{
-            type:Schema.Types.ObjectId,
-            ref:"productos",
-            require:true
+        type:Schema.Types.ObjectId,
+        ref:"productos",
+        require:true
     },
     cantidad:{
             type:Number,
