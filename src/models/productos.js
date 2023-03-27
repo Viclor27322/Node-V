@@ -32,7 +32,7 @@ const ProdSchema = new Schema({
   },
   categoria: {
     type: Schema.Types.ObjectId,
-    ref:"categoria",///verificar como se llamara
+    ref:"categorias",///verificar como se llamara
     require: true
   },
 });
