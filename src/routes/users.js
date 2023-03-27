@@ -14,7 +14,7 @@ router.post('/users',(req,res)=>{
 //consultar
 router.get('/users',(req,res)=>{
     UsersSchema
-    .find().populate("rols")
+    .find()
     .then((data)=>res.json(data))
     .catch((error)=>res.json({message:error}));
 });
