@@ -38,7 +38,7 @@ router.post('/ventas',(req,res)=>{
 }
 })
 router.get('/ventas', (req, res) => {
-    VentaSchema.find()
+    VentaSchema.find().populate("usuarios")
       .then((data) => res.json(data))
       .catch((error) => {
       console.error(error);
