@@ -63,8 +63,7 @@ router.get('/ventas/:id',(req,res)=>{/// aun no se como hacerle xd
 //consulta id
 router.get('/ventas/usuario/:id', (req, res) => {
     const { id } = req.params;
-    VentaSchema
-      .find({ usuario: id })
+    VentaSchema.find({ usuario: id }).populate("usuarios productos")
       .then((data) => res.json(data))
       .catch((error) => res.json({ message: error }));
   });
