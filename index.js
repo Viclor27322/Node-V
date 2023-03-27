@@ -7,7 +7,7 @@ const UserRoutes = require('./src/routes/users');
 const AyudaRoutes = require('./src/routes/ayuda');
 const CateRoutes = require('./src/routes/categoria');
 const RolRoutes = require('./src/routes/rol');
-const VentaRoutes = require('./src/routes/venta');
+const VentaRoutes = require('./src/routes/ventas');
 const cors = require('cors');
 
 const app = express();
