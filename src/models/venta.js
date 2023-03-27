@@ -28,3 +28,5 @@ const VentaSchema= new Schema({
         total:Number
     }]
 })
+
+module.exports = mongoose.model('Venta',VentaSchema);
