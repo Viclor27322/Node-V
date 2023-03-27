@@ -38,7 +38,7 @@ router.post('/ventas',(req,res)=>{
 }
 })
 router.get('/ventas', (req, res) => {
-    VentaSchema.find()
+    VentaSchema.find().populate("usuarios productos")
       .then((data) => res.json(data))
       .catch((error) => {
         console.error(error);
@@ -51,7 +51,7 @@ router.get('/ventas', (req, res) => {
 router.get('/ventas/:id',(req,res)=>{/// aun no se como hacerle xd
     const {id} = req.params;
     VentaSchema
-    .findById(id)
+    .findById(id).populate("usuarios productos")
     .then((data)=>res.json(data))
     .catch((error)=>res.json({message:error}));
 });
