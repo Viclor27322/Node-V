@@ -15,18 +15,17 @@ const VentaSchema= new Schema({
         ref:"usuarios",
         require:true
     },
-    productos:[{
-        producto:{
+    productos:{
             type:Schema.Types.ObjectId,
             ref:"productos",
             require:true
-        },
-        cantidad:{
+    },
+    cantidad:{
             type:Number,
             require:true
-        },
+    },
         total:Number
-    }]
+   
 })
 
 module.exports = mongoose.model('Venta',VentaSchema);

@@ -23,12 +23,9 @@ router.post('/ventas',(req,res)=>{
         fecha : fechaFormateada,
         hora : horaFormateada,
         usuario, 
-        productos:[ {
-            producto:productos,
-            cantidad:cantidad,
-            total:total
-        }  
-        ]
+        productos:productos,
+        cantidad:cantidad,
+        total:total
       })
     venta
     .save()
