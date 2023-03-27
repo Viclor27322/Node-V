@@ -10,31 +10,24 @@ router.post('/productos', async (req, res) => {
       const {
         nombre,
         descripcion,
+        imagen,
         precio,
         sabor,
         presentacion,
         existencia,
-        categoria
+        categoria,
       } = req.body;
   
       const producto = new ProdSchema({
         nombre,
         descripcion,
+        imagen,
         precio,
         sabor,
         presentacion,
         existencia,
         categoria
       });
-  
-      if (req.files?.imagen) {
-        const rs = await uploadImage(req.files.imagen.tempFilePath);
-        producto.imagen = {
-          public_id: rs.public_id,
-          secure_url: rs.secure_url,
-        };
-        fs.unlink(req.files.imagen.tempFilePath);
-      }
   
       await producto.save();
       res.json(producto);
