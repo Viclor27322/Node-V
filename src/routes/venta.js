@@ -5,6 +5,7 @@ const VentaSchema = require('../models/venta');
 //crear
 router.post('/venta'),(req,res)=>{
     const {usuario,productos,cantidad,total}=req.body;
+    try {
     let fechaActualD = new Date();
     let dia = fechaActualD.getDate().toString().padStart(2, "0"); // Agrega un cero a la izquierda si el día tiene un solo dígito
     let mes = (fechaActualD.getMonth() + 1).toString().padStart(2, "0"); // Agrega un cero a la izquierda si el mes tiene un solo dígito
@@ -32,6 +33,11 @@ router.post('/venta'),(req,res)=>{
     .save()
     .then((data)=>res.json(data))
     .catch((error)=>res.json({message:error}));
+
+} catch (error) {
+    console.log(error);
+    return res.status(500).json({error: 'Algo fallo en el servidor o la base de datos'})
+}
 }
 
 //consultar todas
