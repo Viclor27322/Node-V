@@ -4,7 +4,17 @@ const UsersSchema = require('../models/users');
 
 //crear
 router.post('/users',(req,res)=>{
-    const users= UsersSchema(req.body);
+    const {nombre,nombreUsers,correo,contraseña,pregunta,clave}=req.body;
+
+    const users=new UsersSchema({
+        nombre:nombre,
+        nombreUsers:nombreUsers,
+        contraseña:contraseña,
+        correo:correo,
+        pregunta:pregunta,
+        clave:clave,
+        rol:'641f6a041bf4e7215b63d504'
+    });
     users
     .save()
     .then((data)=>res.json(data))
@@ -14,7 +24,7 @@ router.post('/users',(req,res)=>{
 //consultar
 router.get('/users',(req,res)=>{
     UsersSchema
-    .find()
+    .find().populate('rol')
     .then((data)=>res.json(data))
     .catch((error)=>res.json({message:error}));
 });
@@ -31,9 +41,9 @@ router.get('/users/:id',(req,res)=>{/// aun no se como hacerle xd
 ///actualizar
 router.put('/users/:id',(req,res)=>{
     const {id} = req.params;
-    const {nombre,nombreUsers,contraseña,correo,pregunta,clave,rol} = req.body;
+    const {nombre,nombreUsers,contraseña,correo,pregunta,clave} = req.body;
     UsersSchema
-    .updateOne({_id:id},{$set:{nombre,nombreUsers,contraseña,correo,pregunta,clave,rol}})
+    .updateOne({_id:id},{$set:{nombre,nombreUsers,contraseña,correo,pregunta,clave}})
     .then((data)=>res.json(data))
     .catch((error)=>res.json({message:error}));
 });
