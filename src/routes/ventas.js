@@ -38,11 +38,11 @@ router.post('/ventas',(req,res)=>{
 }
 })
 router.get('/ventas', (req, res) => {
-    VentaSchema.find().populate("usuarios productos")
+    VentaSchema.find()
       .then((data) => res.json(data))
       .catch((error) => {
-        console.error(error);
-        res.status(500).json({ message: 'Error al consultar las ventas' });
+      console.error(error);
+      res.status(500).json({ message: 'Error al consultar las ventas' });
       });
   });
 
