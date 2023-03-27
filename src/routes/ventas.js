@@ -3,7 +3,7 @@ const router = express.Router();
 const VentaSchema = require('../models/venta');
 
 //crear
-router.post('/ventas'),(req,res)=>{
+router.post('/ventas',(req,res)=>{
     const {usuario,productos,cantidad,total}=req.body;
     try {
     let fechaActualD = new Date();
@@ -39,7 +39,7 @@ router.post('/ventas'),(req,res)=>{
     console.log(error);
     return res.status(500).json({error: 'Algo fallo en el servidor o la base de datos'})
 }
-}
+})
 router.get('/ventas', (req, res) => {
     VentaSchema.find()
       .then((data) => res.json(data))
