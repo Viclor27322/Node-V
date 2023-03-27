@@ -65,10 +65,8 @@ router.get('/ventas/usuario/:id', (req, res) => {
     const { id } = req.params;
     VentaSchema
       .find({ usuario: id })
-      .populate('usuario')
-      .populate('productos.producto')
       .then((data) => res.json(data))
       .catch((error) => res.json({ message: error }));
   });
-  
+
 module.exports = router;
