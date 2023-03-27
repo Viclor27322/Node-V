@@ -35,12 +35,15 @@ router.post('/venta'),(req,res)=>{
 }
 
 //consultar todas
-router.get('/venta',(req,res)=>{
-    VentaSchema
-    .find()
-    .then((data)=>res.json(data))
-    .catch((error)=>res.json({message:error}));
-});
+router.get('/venta', (req, res) => {
+    VentaSchema.find()
+      .then((data) => res.json(data))
+      .catch((error) => {
+        console.error(error);
+        res.status(500).json({ message: 'Error al consultar las ventas' });
+      });
+  });
+  
 
 //consulta id
 router.get('/venta/:id',(req,res)=>{/// aun no se como hacerle xd
