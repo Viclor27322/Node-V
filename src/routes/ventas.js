@@ -76,7 +76,23 @@ router.get('/ventas/:id',(req,res)=>{/// aun no se como hacerle xd
 //consulta id
 router.get('/ventas/usuario/:id', (req, res) => {
     const { id } = req.params;
-    VentaSchema.find({ usuario: id }).populate("usuarios productos")
+    VentaSchema.find({ usuario: id }).aggregate([
+        {
+            $lookup:{
+                from:'usuarios',
+                localField:'usuario',
+                foreignField:'_id',
+                as:'usuario'
+            }
+        },{
+          $lookup:{
+                from:'productos',
+                localField:'productos',
+                foreignField:'_id',
+                as:'productos'
+            }
+        }
+    ])
       .then((data) => res.json(data))
       .catch((error) => res.json({ message: error }));
   });
