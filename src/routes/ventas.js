@@ -62,6 +62,24 @@ router.get('/ventas', (req, res) => {
       });
   });
 
+  router.get('/ventass', (req, res) => {
+    VentaSchema.aggregate([
+        {
+        $lookup:{
+              from:'productos',
+              localField:'productos',
+              foreignField:'_id',
+              as:'productos'
+          }
+      }
+  ])
+      .then((data) => res.json(data))
+      .catch((error) => {
+      console.error(error);
+      res.status(500).json({ message: 'Error al consultar las ventas' });
+      });
+  });
+
 
 //consulta id
 router.get('/ventas/:id',(req,res)=>{/// aun no se como hacerle xd
