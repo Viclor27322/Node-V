@@ -62,6 +62,14 @@ router.put('/productos/:id',(req,res)=>{
     .then((data)=>res.json(data))
     .catch((error)=>res.json({message:error}));
 });
+router.put('/productos/actualizar/:id',(req,res)=>{
+  const {id} = req.params;
+  const {existencia} = req.body;
+  ProdSchema
+  .updateOne({_id:id},{$set:{existencia}})
+  .then((data)=>res.json(data))
+  .catch((error)=>res.json({message:error}));
+});
 
 //eliminar 
 router.delete('/productos/:id',(req,res)=>{
