@@ -38,7 +38,16 @@ router.post('/ventas',(req,res)=>{
 }
 })
 router.get('/ventas', (req, res) => {
-    VentaSchema.find().populate("usuario")
+    VentaSchema.aggregate([
+      {
+          $lookup:{
+              from:'rols',
+              localField:'rol',
+              foreignField:'_id',
+              as:'rol'
+          }
+      }
+  ])
       .then((data) => res.json(data))
       .catch((error) => {
       console.error(error);
