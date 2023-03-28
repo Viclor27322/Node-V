@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const ProdSchema= require('../models/productos');
-const uploadImage = require('../cloudinary/cloudinary');
 
 
 //crear
