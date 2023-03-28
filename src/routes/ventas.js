@@ -49,9 +49,9 @@ router.get('/ventas', (req, res) => {
       },{
         $lookup:{
               from:'productos',
-              localField:'producto',
+              localField:'productos',
               foreignField:'_id',
-              as:'producto'
+              as:'productos'
           }
       }
   ])
