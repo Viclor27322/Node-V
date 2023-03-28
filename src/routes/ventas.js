@@ -67,7 +67,7 @@ router.get('/ventas', (req, res) => {
 router.get('/ventas/:id',(req,res)=>{/// aun no se como hacerle xd
     const {id} = req.params;
     VentaSchema
-    .findById(id).populate("usuarios productos")
+    .findById(id)
     .then((data)=>res.json(data))
     .catch((error)=>res.json({message:error}));
 });
@@ -76,23 +76,8 @@ router.get('/ventas/:id',(req,res)=>{/// aun no se como hacerle xd
 //consulta id
 router.get('/ventas/usuario/:id', (req, res) => {
     const { id } = req.params;
-    VentaSchema.find({ usuario: id }).aggregate([
-        {
-            $lookup:{
-                from:'usuarios',
-                localField:'usuario',
-                foreignField:'_id',
-                as:'usuario'
-            }
-        },{
-          $lookup:{
-                from:'productos',
-                localField:'productos',
-                foreignField:'_id',
-                as:'productos'
-            }
-        }
-    ])
+    VentaSchema.find({ usuario: id })
+    .populate('productos', '-_id nombre')
       .then((data) => res.json(data))
       .catch((error) => res.json({ message: error }));
   });
