@@ -41,10 +41,17 @@ router.get('/ventas', (req, res) => {
     VentaSchema.aggregate([
       {
           $lookup:{
-              from:'rols',
-              localField:'rol',
+              from:'usuarios',
+              localField:'usuario',
               foreignField:'_id',
-              as:'rol'
+              as:'usuario'
+          }
+      },{
+        $lookup:{
+              from:'productos',
+              localField:'producto',
+              foreignField:'_id',
+              as:'producto'
           }
       }
   ])
