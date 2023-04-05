@@ -23,7 +23,16 @@ router.post('/users',(req,res)=>{
 
 //consultar
 router.get('/users',(req,res)=>{
-    UsersSchema.find()
+    UsersSchema.aggregate([
+        {
+            $lookup:{
+                from:'rols',// de coleccion se extr
+                localField:'rol',
+                foreignField:'_id',
+                as:'rol'
+            }
+        }
+    ])
     .then((data)=>res.json(data))
     .catch((error)=>res.json({message:error}));
 });
